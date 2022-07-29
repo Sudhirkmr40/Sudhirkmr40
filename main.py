@@ -31,3 +31,7 @@ record = collection.find()
 for i in record:
     print(i)
 
+data3 = collection.find({"profile":"MIA"})
+for i in data3:
+    print(i)
+
