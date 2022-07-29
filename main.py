@@ -27,3 +27,7 @@ collection = database["New_records"]
 collection.insert_many(New_records)
 
 
+record = collection.find()
+for i in record:
+    print(i)
+
