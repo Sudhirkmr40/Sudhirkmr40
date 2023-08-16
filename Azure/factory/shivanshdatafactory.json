@@ -1,0 +1,9 @@
+{
+	"name": "shivanshdatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "906a06c7-4aa1-43b4-a6c8-f2ba205844aa",
+		"tenantId": "2b75a36e-d71e-4e0a-a720-f3a531c25faf"
+	}
+}
