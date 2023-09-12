@@ -29,7 +29,7 @@
 				}
 			},
 			{
-				"name": "CHECK RECORDS MORE THAN 1000",
+				"name": "checking records more than 100",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
