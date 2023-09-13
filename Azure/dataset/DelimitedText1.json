@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileSystem": {
-					"value": "@formatDateTime(utcNow(),'YYYY-MM-DD')",
+					"value": "@formatDateTime(utcNow(),'yyyy-MM-dd')",
 					"type": "Expression"
 				}
 			},
