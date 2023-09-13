@@ -17,7 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -44,7 +43,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AZURE_SQL_DATABASE",
+						"referenceName": "PRODUCT_SQL_Database",
 						"type": "DatasetReference"
 					}
 				],
