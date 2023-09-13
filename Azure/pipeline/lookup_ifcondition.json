@@ -1,22 +1,53 @@
 {
-	"name": "for_each_actiity",
+	"name": "lookup_ifcondition",
 	"properties": {
-		"description": "for each acitivity",
 		"activities": [
 			{
-				"name": "Copy multiple tables",
-				"type": "ForEach",
+				"name": "FETCH_RECORDS",
+				"type": "Lookup",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@createArray('Customer','Product','CustomerAddress','ProductModel','ProductDescription')",
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select count(*) as TotalCount  from SalesLT.Customer",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "AZURE_SQL_DATABASE",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "checking records more than 100",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "FETCH_RECORDS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('FETCH_RECORDS').output.count",
 						"type": "Expression"
 					},
-					"isSequential": true,
-					"activities": [
+					"ifTrueActivities": [
 						{
-							"name": "Copy data1",
+							"name": "Copy data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -56,27 +87,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference",
-									"parameters": {
-										"schemaName": "SalesLT",
-										"TableName": {
-											"value": "@item()",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "AZURE_SQL_DATABASE",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "generic_adls_csv_dataset",
-									"type": "DatasetReference",
-									"parameters": {
-										"folderpath": {
-											"value": "@item()",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference"
 								}
 							]
 						}
@@ -84,8 +102,6 @@
 				}
 			}
 		],
-		"annotations": [],
-		"lastPublishTime": "2023-04-15T11:08:30Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

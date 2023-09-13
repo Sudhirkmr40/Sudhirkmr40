@@ -1,7 +1,6 @@
 {
-	"name": "product_to_folder",
+	"name": "COPY_PIPELINE",
 	"properties": {
-		"description": "product to folder",
 		"activities": [
 			{
 				"name": "Copy data1",
@@ -44,27 +43,18 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference",
-						"parameters": {
-							"schemaName": "SalesLT",
-							"TableName": "Product"
-						}
+						"referenceName": "AZURE_SQL_DATABASE",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "generic_adls_csv_dataset",
-						"type": "DatasetReference",
-						"parameters": {
-							"folderpath": "Product"
-						}
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
 					}
 				]
 			}
 		],
-		"annotations": [],
-		"lastPublishTime": "2023-04-14T16:10:52Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

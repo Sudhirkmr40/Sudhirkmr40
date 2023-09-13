@@ -1,7 +1,6 @@
 {
-	"name": "pipeline1",
+	"name": "pipeline_for_folfrrcreation",
 	"properties": {
-		"description": "GENERICDATABSE",
 		"activities": [
 			{
 				"name": "Copy data1",
@@ -44,12 +43,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference",
-						"parameters": {
-							"schemaName": "SalesLT",
-							"TableName": "CustomerAddress"
-						}
+						"referenceName": "AZURE_SQL_DATABASE",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
@@ -60,8 +55,6 @@
 				]
 			}
 		],
-		"annotations": [],
-		"lastPublishTime": "2023-04-13T17:39:06Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }
